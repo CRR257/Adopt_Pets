@@ -12,12 +12,9 @@ class App extends React.Component {
       <div>
         <h1>Adopt Me!</h1>
         <Router>
-        <Results path="/"/>
-        <Details path="/details/:id"/>
+          <Results path="/"/>
+          <Details path="/details/:id"/>
         </Router>
-      
-       
-
       </div>
     );
   }
