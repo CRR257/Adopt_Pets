@@ -11,19 +11,18 @@ class Carousel extends React.Component {
     let photos = [];
 
     if (media && media.photos && media.photos.photo) {
-      photos = media.photos.photo.filter((photo) => photo["@size"] === "pn");
+      photos = media.photos.photo.filter(photo => photo["@size"] === "pn");
     }
 
     return { photos };
   }
 
-  handleIndexClick=(event) => {
+  handleIndexClick = event => {
     this.setState({
       active: event.target.dataset.index
       //when we click, we get the index back
-    })
-  }
-
+    });
+  };
 
   render() {
     const { photos, active } = this.state;
@@ -38,7 +37,7 @@ class Carousel extends React.Component {
               key={photo.value}
               data-index={index}
               src={photo.value}
-              className={index === active ? "active" : ""} 
+              className={index === active ? "active" : ""}
               // with === we compare value and type, so this.setState we neet to convert a nunmber
               alt="animal thumb"
             />
