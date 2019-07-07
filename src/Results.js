@@ -1,6 +1,7 @@
 import React from "react";
 import pf from "petfinder-client";
 import Pet from "./Pet";
+import SearchBox from "./SearchBox";
 
 const petfinder = pf({
   key: process.env.API_KEY,
@@ -43,36 +44,38 @@ class Results extends React.Component {
 
   render() {
     return (
-        <div className= "search">
-          {this.state.pets.map(pet => {
-            let breed;
+      <div className="search">
+      <SearchBox/>
+        {this.state.pets.map(pet => {
+          let breed;
 
-            if (Array.isArray(pet.breeds.breed)) {
-              breed = pet.breeds.breed.join(". ");
-            } else {
-              breed = pet.breeds.breed;
-            }
+          if (Array.isArray(pet.breeds.breed)) {
+            breed = pet.breeds.breed.join(". ");
+          } else {
+            breed = pet.breeds.breed;
+          }
 
-            // const x = `My dog's breed is ${breed}`
-            return (
-                    <Pet key={pet.id} 
-                        animal={pet.animal} 
-                        name={pet.name} 
-                        breed={breed}
-                        media = {pet.media}
-                        location= {`${pet.contact.city}, ${pet.contact.state}`}
-                    />
-                  )
-            })}
+          // const x = `My dog's breed is ${breed}`
+          return (
+            <Pet
+              key={pet.id}
+              animal={pet.animal}
+              name={pet.name}
+              breed={breed}
+              media={pet.media}
+              location={`${pet.contact.city}, ${pet.contact.state}`}
+            />
+          );
+        })}
 
-          {/* <div>
+        {/* <div>
             {this.state.pets.map(pet => {
               return <li>{pet.name}</li>;
             })}
           </div> */}
-        </div>
+      </div>
     );
   }
 }
 
-export default Results 
+export default Results;
