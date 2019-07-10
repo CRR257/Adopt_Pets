@@ -74,6 +74,11 @@ class App extends React.Component {
       <div>
         <header>
           <Link to="/">Adopt Me!</Link>
+          <Link to="/search-params">
+            <span aria-label="search" role="img">
+              🐱__🐢
+            </span>
+            </Link>
         </header>
         <Provider value={this.state}>
           <Router>
@@ -90,6 +95,10 @@ class App extends React.Component {
 render(<App />, document.getElementById("root"));
 
 /*
+  We use context if we need to pass from the root parent to every route
+  (if something has to live in the parent component and is used in more
+  than > 4places).
+  
   <Provider value={this.state}> we pass this.state from app.js
   we're thowing into the entrance portal tihs.state: location, animals,
   breeds, breed, handlers and getBreeds.

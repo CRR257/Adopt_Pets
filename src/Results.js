@@ -1,5 +1,6 @@
 import React from "react";
 import pf from "petfinder-client";
+import {Consumer} from "./SearchContext";
 import Pet from "./Pet";
 import SearchBox from "./SearchBox";
 
@@ -21,8 +22,16 @@ class Results extends React.Component {
   componentDidMount() {
     //after render the DOM, we call componentDidMount
     //and it's called once for component
+      this.search();
+  }
+  search() {
+    // we write the search method to inicilize anytime we click the submit button
     petfinder.pet
-      .find({ output: "full", location: "Seattle, WA" })
+      .find({ output: "full", 
+      location: this.props.searchParams.location,
+      animal: this.props.searchParams.animal,
+      breed: this.props.searchParams.breed
+     })
       .then(data => {
         let pets;
 
@@ -42,10 +51,12 @@ class Results extends React.Component {
       });
   }
 
+
   render() {
     return (
       <div className="search">
-      <SearchBox/>
+      <SearchBox search = {this.search}/>
+      
         {this.state.pets.map(pet => {
           let breed;
 
@@ -67,15 +78,22 @@ class Results extends React.Component {
             />
           );
         })}
-
-        {/* <div>
-            {this.state.pets.map(pet => {
-              return <li>{pet.name}</li>;
-            })}
-          </div> */}
       </div>
     );
   }
 }
 
-export default Results;
+export default function ResultsWithContext(props) {
+  return(
+    <Consumer>
+      {context => <Results {...props} searchParams={context} />}
+    </Consumer>
+  )
+};
+
+/*
+{...props} ... is spread operator
+this function is to wrap the thing that we export with the consumer
+and pass it in as props to results
+SearchBox all the props are coming in via context
+*/
