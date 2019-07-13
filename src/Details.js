@@ -58,9 +58,14 @@ class Details extends React.Component {
 
     const { name, animal, breed, location, description, media, showModal } = this.state;
 
+    console.log(this.myH1);
+
     return (
       <div className="details">
-      <Carousel media={media}/>  
+      <Carousel media={media}/>
+      <div>
+        <h1 ref={(el) => this.myH1 = el}>{name}</h1>
+      </div>
         <div>
           <h1>{name}</h1>
           <h2>
@@ -91,4 +96,10 @@ the modal is rendering outside of the dom, it's not bubble up to div, because it
 separate domm but because it's in the same React dom, I can catch events coming out of a modal
 we can do any any functionality despite the fact that lives in a different part of the dom, i can catch
 the events inside details
+*/
+
+/*
+ref is for when you need to reference DOM inside React (if you use libraries)
+when it renders for the 1rst time, it's undefined, it hasn't renderet out yet, but
+at the 2nd time exist because it's rendered.
 */
