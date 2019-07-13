@@ -102,4 +102,9 @@ render(<App />, document.getElementById("root"));
   <Provider value={this.state}> we pass this.state from app.js
   we're thowing into the entrance portal tihs.state: location, animals,
   breeds, breed, handlers and getBreeds.
+
+  Anything that goes inside router, router can refer t as this.props.children, it's whatever
+  children components are being passed to it. we are passing inside router:
+  results, details and search-params, they don't have any children,
+  they are self closing tags (children is whatever things we are passed to)
 */

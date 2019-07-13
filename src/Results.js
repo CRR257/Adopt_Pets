@@ -54,6 +54,7 @@ class Results extends React.Component {
 
   render() {
     return (
+    
       <div className="search">
       <SearchBox search = {this.search}/>
       
@@ -75,6 +76,7 @@ class Results extends React.Component {
               breed={breed}
               media={pet.media}
               location={`${pet.contact.city}, ${pet.contact.state}`}
+              id={pet.id}
             />
           );
         })}
