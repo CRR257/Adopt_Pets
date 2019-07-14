@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "react-dom";
+import ReactDOM from "react-dom";
 import pf from "petfinder-client";
 import { Provider } from "./SearchContext";
 import { Router, Link } from "@reach/router";
@@ -38,7 +38,7 @@ class App extends React.Component {
     this.setState(
       {
         animal: event.target.value,
-        breed: ""
+        // breed: ""
       },
       this.getBreeds
     );
@@ -51,7 +51,9 @@ class App extends React.Component {
   };
   getBreeds() {
     if (this.state.animal) {
-      petfinder.breed.list({ animal: this.state.animal }).then(data => {
+      petfinder.breed
+      .list({ animal: this.state.animal })
+      .then(data => {
         if (
           data.petfinder &&
           data.petfinder.breeds &&
@@ -63,11 +65,14 @@ class App extends React.Component {
         } else {
           this.setState({ breeds: [] });
         }
-      });
-    } else {
-      this.setState({ breeds: [] });
-    }
+      })
+      .catch(console.error);
+  } else {
+    this.setState({
+      breeds: []
+    });
   }
+}
 
   render() {
     return (
@@ -78,7 +83,7 @@ class App extends React.Component {
             <span aria-label="search" role="img">
               🐱__🐢
             </span>
-            </Link>
+          </Link>
         </header>
         <Provider value={this.state}>
           <Router>
@@ -92,7 +97,7 @@ class App extends React.Component {
   }
 }
 
-render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
 
 /*
   We use context if we need to pass from the root parent to every route

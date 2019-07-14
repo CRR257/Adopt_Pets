@@ -11,36 +11,31 @@ const petfinder = pf({
 
 class Details extends React.Component {
     
-    state = {
-      loading: true,
+  state = { loading: true, showModal: false };
       // when we load for the fisrt time, we are loading and return true
       // at the second time, it return false
-      showModal: true
-    };
 
-    toggleModal = () => this.setState({showModal: !this.state.showModal});
-
-  componentWillMount() {
+  componentDidMount() {
     petfinder.pet
       .get({
         output: "full",
         id: this.props.id
       })
       .then(data => {
-        const pet = data.petfinder.pet;
         let breed;
-        if (Array.isArray(pet.breeeds.breed)) {
-          breed = pet.breeds.breed.join(", ");
+        if (Array.isArray(data.petfinder.pet.breeds.breed)) {
+          breed = data.petfinder.pet.breeds.breed.join(", ");
         } else {
-          breed = pet.breeds.breed;
+          breed = data.petfinder.pet.breeds.breed;
         }
-
-        this.this.setState({
-          name: pet.name,
-          animal: pet.animal,
-          location: `${pet.contact.city}, ${pet.contact.state}`,
-          description: pet.description,
-          media: pet.media,
+        this.setState({
+          name: data.petfinder.pet.name,
+          animal: data.petfinder.pet.animal,
+          location: `${data.petfinder.pet.contact.city}, ${
+            data.petfinder.pet.contact.state
+          }`,
+          description: data.petfinder.pet.description,
+          media: data.petfinder.pet.media,
           breed,
           loading: false
         });
@@ -49,11 +44,13 @@ class Details extends React.Component {
         navigate("/");
         // we put the catch error outside promise. if error, return homepage (this is from @reach/router)
       });
-  }
+    }
+
+  toggleModal = () => this.setState({showModal: !this.state.showModal});
 
   render() {
     if (this.state.loading) {
-      return <hi>loading</hi>;
+      return <h1>loading</h1>;
     }
 
     const { name, animal, breed, location, description, media, showModal } = this.state;
@@ -66,22 +63,19 @@ class Details extends React.Component {
       <div>
         <h1 ref={(el) => this.myH1 = el}>{name}</h1>
       </div>
-        <div>
-          <h1>{name}</h1>
-          <h2>
-            {animal} - {breed} - {location}
-          </h2>
-          <button onClick={this.toggleModal}>Adopt {name}</button>
-          <p>{description}</p>
-          {
-            showModal ? (
-              <Modal>
-                <h1>Would you like to adopt {name}</h1>
-                <div className= "buttons">
-                  <button onClick={this.toggleModal}>Yes</button>
-                  <button onClick={this.toggleModal}>Definetely Yes</button>
-                </div>
-              </Modal>
+      <div>
+        <h3>{name}</h3>
+        <h2>{` ${animal} — ${breed} — ${location}`}</h2>
+        <button onClick={this.toggleModal}>Adopt {name}</button>
+        <p>{description}</p>
+        {showModal ? (
+            <Modal>
+              <h1>Would you like to adopt {name}?</h1>
+              <div className="buttons">
+                <button onClick={this.toggleModal}>Yes</button>
+                <button onClick={this.toggleModal}>No</button>
+              </div>
+            </Modal>
             ) : null }
         </div>
       </div>

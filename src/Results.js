@@ -15,26 +15,25 @@ class Results extends React.Component {
 
     this.state = {
       pets: [],
-      somethingElse: true
     };
   }
 
   componentDidMount() {
-    //after render the DOM, we call componentDidMount
-    //and it's called once for component
+    //after render the DOM, we call componentDidMount, it's called once for component
       this.search();
   }
-  search() {
+
+  search = () => {
     // we write the search method to inicilize anytime we click the submit button
     petfinder.pet
-      .find({ output: "full", 
-      location: this.props.searchParams.location,
-      animal: this.props.searchParams.animal,
-      breed: this.props.searchParams.breed
-     })
+      .find({
+        location: this.props.searchParams.location,
+        animal: this.props.searchParams.animal,
+        breed: this.props.searchParams.breed,
+        output: "full"
+      })
       .then(data => {
         let pets;
-
         if (data.petfinder.pets && data.petfinder.pets.pet) {
           if (Array.isArray(data.petfinder.pets.pet)) {
             pets = data.petfinder.pets.pet;
@@ -44,34 +43,29 @@ class Results extends React.Component {
         } else {
           pets = [];
         }
-
         this.setState({
-          pets
+          pets: pets
+          //pets
         });
       });
-  }
-
+  };
 
   render() {
     return (
-    
       <div className="search">
-      <SearchBox search = {this.search}/>
-      
+      <SearchBox search = {this.search}/>  
         {this.state.pets.map(pet => {
           let breed;
-
           if (Array.isArray(pet.breeds.breed)) {
             breed = pet.breeds.breed.join(". ");
           } else {
             breed = pet.breeds.breed;
           }
-
           // const x = `My dog's breed is ${breed}`
           return (
             <Pet
-              key={pet.id}
               animal={pet.animal}
+              key={pet.id}
               name={pet.name}
               breed={breed}
               media={pet.media}
@@ -90,7 +84,7 @@ export default function ResultsWithContext(props) {
     <Consumer>
       {context => <Results {...props} searchParams={context} />}
     </Consumer>
-  )
+  );
 };
 
 /*
