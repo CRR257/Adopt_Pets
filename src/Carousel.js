@@ -19,7 +19,7 @@ class Carousel extends React.Component {
 
   handleIndexClick = event => {
     this.setState({
-      active: +event.target.dataset.index
+      active: event.target.dataset.index
       //when we click, we get the index back
     });
   };
@@ -27,19 +27,26 @@ class Carousel extends React.Component {
   render() {
     const { photos, active } = this.state;
 
-    return (
-      <div className="carousel">
-        <img src={photos[active].value} alt="primary animal" />
-        <div className="carousel-smaller">
-          {photos.map((photo, index) => (
-            <img
-              onClick={this.handleIndexClick}
-              key={photo.value}
-              data-index={index}
-              src={photo.value}
-              className={index === active ? "active" : ""}
+    let hero = "http://placecorgi.com/300/300";
+    if (photos[active] && photos[active].value) {
+      hero = photos[active].value;
+    }
+
+
+  return (
+    <div className="carousel">
+      <img src={hero} alt="animal" />
+      <div className="carousel-smaller">
+        {photos.map((photo, index) => (
+          /* eslint-disable-next-line */
+          <img
+            onClick={this.handleIndexClick}
+            data-index={index}
+            key={photo.value}
+            src={photo.value}
+            className={index === active ? "active" : ""}
               // with === we compare value and type, so this.setState we neet to convert a nunmber
-              alt="animal thumb"
+            alt="animal thumb"
             />
           ))}
         </div>
@@ -49,3 +56,4 @@ class Carousel extends React.Component {
 }
 
 export default Carousel;
+
