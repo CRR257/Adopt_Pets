@@ -50,7 +50,7 @@ class Details extends React.Component {
 
   render() {
     if (this.state.loading) {
-      return <h1>loading</h1>;
+      return <h1>loading...</h1>;
     }
 
     const { name, animal, breed, location, description, media, showModal } = this.state;
@@ -64,7 +64,7 @@ class Details extends React.Component {
         <h1 ref={(el) => this.myH1 = el}>{name}</h1>
       </div>
       <div>
-        <h3>{name}</h3>
+        {/* <h3>{name}</h3> */}
         <h2>{` ${animal} — ${breed} — ${location}`}</h2>
         <button onClick={this.toggleModal}>Adopt {name}</button>
         <p>{description}</p>

@@ -78,13 +78,10 @@ class App extends React.Component {
     return (
       <div>
         <header>
-          <Link to="/">Adopt Me!</Link>
-          <Link to="/search-params">
-            <span aria-label="search" role="img">
-              🐱__🐢
-            </span>
-          </Link>
+          <Link to="/">Adopt Pets 🐱__🐢</Link>
+          <Link to="/search-params" />
         </header>
+        <h2>The best search engine to find your best friend!</h2>
         <Provider value={this.state}>
           <Router>
             <Results path="/" />
