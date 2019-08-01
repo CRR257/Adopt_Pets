@@ -1,22 +1,33 @@
 * {
     box-sizing: border-box;
-    color: #333;
+    color: #11012f;
   }
   
   body {
-    background-color: #ad343e;
+    background-color:#07156a;
     margin: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
   
+  h1 {
+    margin: 30px 0 0 30px;
+  }
+
+  h2 {
+    margin: 14px 0 46px 30px;
+    color: #adadad;
+    font-weight: 200;
+    letter-spacing: 2px;
+  }
+
   .search,
   .details,
   .search-params {
-    background-color: #c4b2bc;
+    background-color: #656163;
     width: 95%;
-    margin: 0 auto;
-    padding: 15px;
+    padding: 27px 10px;
     border-radius: 5px;
+    margin: 10px 30px 20px 30px;
   }
   
   .pet {
@@ -24,7 +35,7 @@
     height: 100px;
     display: block;
     overflow: hidden;
-    margin: 15px 0;
+    margin: 15px 0 10px 40px;
   }
   
   .pet img {
@@ -41,11 +52,12 @@
   }
   
   .image-container {
-    clip-path: circle(50% at 50% 50%);
+    clip-path: circle(63% at 49% 46%);
     width: 100px;
     height: 100px;
     float: left;
     margin-right: 20px;
+    border: 2px solid black;
   }
   
   .pet h1 {
@@ -65,11 +77,10 @@
   }
   
   header a {
-    color: #f2af29;
     font-size: 50px;
-    text-decoration: none;
     font-weight: bold;
-    display: block;
+    color: #bfbbbb;
+    letter-spacing: 3px;
   }
   
   header {
@@ -77,11 +88,12 @@
     align-content: center;
     justify-content: space-between;
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 50px 20px 40px 30px;
   }
   
   .details p {
     line-height: 2;
+    margin: 20px 12px;
   }
   
   .details h1,
@@ -93,22 +105,25 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 400px;
   }
   
   .carousel > img {
     max-width: 45%;
-    max-height: 400px;
+    border-radius: 9px;
+    border: 1px solid black;
   }
   
   .carousel-smaller {
     width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .carousel-smaller > img {
     width: 100px;
     height: 100px;
-    border-radius: 50%;
+    border-radius: 6%;
     display: inline-block;
     margin: 15px;
     cursor: pointer;
@@ -123,28 +138,29 @@
   .search-params label {
     display: block;
     width: 60px;
+    font-weight: 600;
   }
   
   .search-params input,
   .search-params select {
-    margin-bottom: 30px;
+    margin: 10px 0 20px 0;
     font-size: 18px;
     height: 30px;
     width: 325px;
+    border-radius: 3px;
+    background-color: #bfbfbf;
   }
   
   .search-params button,
   #modal button,
   .details button {
-    background-color: #ad343e;
+    background-color: #b80211;
     padding: 5px 25px;
     color: white;
     font-size: 18px;
     border: #333 1px solid;
     border-radius: 5px;
-    display: block;
-    margin: 0 auto;
-    cursor: pointer;
+    margin: 20px 9px;
   }
   
   .search-params button:hover {

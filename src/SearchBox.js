@@ -16,7 +16,7 @@ class SearchBox extends React.Component {
           <div className="search-params">
           <form onSubmit={this.handleFormSubmit}>
             <label htmlFor="location">
-              Location
+              Location:
               <input
                 onChange={context.handleLocationChange}
                 id="location"
@@ -25,7 +25,7 @@ class SearchBox extends React.Component {
               />
             </label>
             <label htmlFor="animal">
-              Animal
+              Animal:
               <select
                 id="animal"
                 value={context.animal}
@@ -41,7 +41,7 @@ class SearchBox extends React.Component {
               </select>
             </label>
             <label htmlFor="breed">
-              Breed
+              Breed:
               <select
                 id="breed"
                 value={context.breed}
@@ -59,6 +59,7 @@ class SearchBox extends React.Component {
               </select>
             </label>
             <button>Submit</button>
+            <p>Select an adorable pet to adopt it!</p>
            </form>
           </div>
         )}
